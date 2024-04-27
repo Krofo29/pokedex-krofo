@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import './App.css'
+import Navbar from './components/Navbar'
+
 
 function App() {
 
@@ -30,9 +31,8 @@ getPokemones()
 
   return (
     <>
+    <Navbar />
       <div>
-<h1>POKEDEX KROFO</h1>
-
 {
   pokemones.map(pokemon => {
     return (
