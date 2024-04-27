@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <div>
-<h1>POKEDEX KROFO</h1>
+<h1>POKEDEX KROFO 1.0</h1>
       </div>
     </>
   )
