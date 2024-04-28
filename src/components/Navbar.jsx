@@ -7,12 +7,6 @@ const Navbar = () => {
     return (
         <nav>
            <img className="logoPokemon" src={Logo} alt="Logo Pokemon" />
-            <div>
-                <label>
-                    <imput type="checkbox"/>
-                    <span></span>
-                </label>
-            </div>
               <Buscador />
         </nav>
     )

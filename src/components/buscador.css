@@ -23,7 +23,7 @@ button > img {
     transition: 0.4s;
 }
 
-.input-buscar {
+.inputBuscar {
     background-color: white;
     border: none;
     border-radius: 10px;
