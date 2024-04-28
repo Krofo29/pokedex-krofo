@@ -1,53 +1,54 @@
-import { useState, useEffect } from 'react'
-import Navbar from './components/Navbar'
-
+import { useState, useEffect } from "react";
+import Navbar from "./components/Navbar";
+import PokemonCard from "./components/PokemonCard";
 
 function App() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [pokemons, setPokemons] = useState([]);
 
-const [pokemones, setPokemones] = useState([])
+  useEffect(() => {
+    const fetchPokemons = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch(
+          "https://pokeapi.co/api/v2/pokemon?limit=50"
+        );
+        const { results } = await response.json();
+        setIsLoading(false);
+        setPokemons(results);
+      } catch (error) {
+        console.log("Error", error);
+      }
+    };
+    fetchPokemons();
+  }, []);
 
-useEffect(() => {
-const getPokemones = async () => {
-const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=20&offset=0')
-const listaPokemones = await response.json()
-const { results } = listaPokemones
+  if (isLoading) {
+    return (
+      <>
+        <Navbar />
+        <h1>Cargando datos desde la pokedex...</h1>
+      </>
+    );
+  }
 
-const newPokemones = results.map( async (pokemon) => {
-const response = await fetch(pokemon.url)
-const poke = await response.json()
-
-return {
-  id: poke.id,
-  name: poke.name,
-  img: poke.sprites.other.dream_world.front_default,
-}
-})
-console.log(newPokemones)
-setPokemones(await Promise.all(newPokemones));
-}
-
-getPokemones()
-}, [])
+  if (!pokemons.length) {
+    return (
+      <>
+        <Navbar />
+        <h1>No se encontraron Pokemons</h1>;
+      </>
+    );
+  }
 
   return (
     <>
-    <Navbar />
-      <div>
-{
-  pokemones.map(pokemon => {
-    return (
-      <div>
-        <span>{pokemon.id}</span>
-        <p>{pokemon.name}</p>
-        <img src={pokemon.img} alt={pokemon.name}/>
-      </div>
-    )
-  })
-}
-
-      </div>
+      <Navbar />
+      {pokemons.map((pokemon) => {
+        return <PokemonCard key={pokemon.name} urlInfo={pokemon.url} />;
+      })}
     </>
-  )
+  );
 }
 
-export default App
+export default App;

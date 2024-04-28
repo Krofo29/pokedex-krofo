@@ -1,4 +1,3 @@
-import React from 'react';
 import '../components/Navbar.css'
 import Buscador from './Buscador'
 import Logo from '../assets/Logo.svg';
@@ -9,7 +8,7 @@ const Navbar = () => {
            <img className="logoPokemon" src={Logo} alt="Logo Pokemon" />
             <div>
                 <label>
-                    <imput type="checkbox"/>
+                    <input type="checkbox"/>
                     <span></span>
                 </label>
             </div>
