@@ -4,7 +4,6 @@ import Buscador from './Buscador'
 import Logo from '../assets/Logo.svg';
 
 const Navbar = () => {
-
     return (
         <nav>
            <img className="logoPokemon" src={Logo} alt="Logo Pokemon" />
