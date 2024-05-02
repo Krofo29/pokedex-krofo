@@ -1,4 +1,4 @@
-import './Detalle.css';
+import '../components/Detalle.css';
 
 function Detalle({ mostrar, pokemon, cerrar }) {
     return (

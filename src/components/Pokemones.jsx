@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import usePokemones from '../hooks/usePokemones';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Detalle from './Detalle';
-import './Pokemones.css';
+import '../components/Pokemones.css';
 
 function PokemonComponent({ id, nombre, imagen, verPokemon }) {
     return (
