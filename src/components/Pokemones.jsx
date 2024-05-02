@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import usePokemones from '../hooks/usePokemones';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Detalle from './Detalle';
@@ -15,15 +15,23 @@ function PokemonComponent({ id, nombre, imagen, verPokemon }) {
     )
 }
 
-function Pokemones() {
-    const { pokemones, masPokemones, siguienteUrl, searchPokemon } = usePokemones();
+function Pokemones({ pokemonSeleccionado }) {
+    const { pokemones, masPokemones, siguienteUrl } = usePokemones();
     const [mostrar, setMostrar] = useState({ mostrar: false, pokemon: {} });
+
     const verPokemon = (pokemon) => setMostrar({ mostrar: true, pokemon });
+
     const noVerPokemon = () => setMostrar({ mostrar: false, pokemon: {} });
+
+    useEffect(() => {
+        if (pokemonSeleccionado) {
+            verPokemon(pokemonSeleccionado);
+        }
+    }, [pokemonSeleccionado]);
 
     return (
         <>
-            <Detalle {...mostrar} cerrar={noVerPokemon}/>
+            <Detalle mostrar={mostrar.mostrar} pokemon={mostrar.pokemon} cerrar={noVerPokemon}/>
             <InfiniteScroll
                 dataLength={pokemones.length}
                 next={masPokemones}
@@ -33,7 +41,11 @@ function Pokemones() {
                 className='pokemon-container'
             >
                 {pokemones.map(pokemon => (
-                    <PokemonComponent key={pokemon.id} {...pokemon} verPokemon={() => verPokemon(pokemon)}/> 
+                    <PokemonComponent 
+                        key={pokemon.id} 
+                        {...pokemon} 
+                        verPokemon={() => verPokemon(pokemon)} 
+                    /> 
                 ))}
             </InfiniteScroll>
         </>
