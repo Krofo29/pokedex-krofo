@@ -9,7 +9,7 @@ const Navbar = () => {
     const { searchPokemon } = usePokemones();
     
     const buscarPokemon = async () => {
-        if (!busqueda) return; // Agregado este chequeo
+        if (!busqueda) return;
         const pokemon = await searchPokemon(busqueda);
         console.log("Pokemon buscado:", pokemon);
     };
