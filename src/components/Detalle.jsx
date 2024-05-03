@@ -1,4 +1,4 @@
-import './Detalle.css';
+import './Detalle.css'
 
 function Detalle({ mostrar, pokemon, cerrar }) {
     return (
@@ -7,7 +7,7 @@ function Detalle({ mostrar, pokemon, cerrar }) {
                 <div className='tarjetaImagen'>
                     <img src={pokemon.imagen} alt={pokemon.nombre} className="imagenDetalle" />
                     <section className='tiposContainer'>
-                        {pokemon.types?.map(type => <span className='tag'>{type}</span>)}
+                        {pokemon.types?.map((type, index) => <span key={index} className='tag'>{type}</span>)}
                     </section>
                 </div>
                 <div className='tarjetaData'>
@@ -15,13 +15,13 @@ function Detalle({ mostrar, pokemon, cerrar }) {
 
                     <h3 className='tituloStats'>HABILIDADES</h3>
                     <div className='habilidadesContainer'>
-                        {pokemon.abilities?.map(ability => <span className='habilidades'>{ability.toUpperCase()}</span>)}
+                        {pokemon.abilities?.map((ability, index) => <span key={index} className='habilidades'>{ability.toUpperCase()}</span>)}
                     </div>
 
                     <h3 className='tituloStats'>ESTADISTICAS</h3>
                     <div className='estadisticas'>
-                        {pokemon.stats?.map(stat =>
-                            <section>
+                        {pokemon.stats?.map((stat, index) =>
+                            <section key={index}>
                                 <span className='puntos'>{stat.base}</span>
                                 <span>{stat.name}</span>
                             </section>
